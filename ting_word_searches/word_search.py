@@ -16,13 +16,15 @@ def search_response(word, instance, is_search):
     for path in instance.list_ting:
         list_file = txt_importer(path)
         occurrence = get_search_occurrences(list_file, word, is_search)
-        response.append({
-            "palavra": word,
-            "arquivo": path,
-            "ocorrencias": occurrence,
-        })
 
-    return [] if len(occurrence) == 0 else response
+        if len(occurrence) != 0:
+            response.append({
+                "palavra": word,
+                "arquivo": path,
+                "ocorrencias": occurrence,
+            })
+
+    return response
 
 
 def get_search_occurrences(list_file, word, is_search):
